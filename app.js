@@ -39,12 +39,14 @@ function addTask() {
         return;
     }
 
-    const task = {
-        id: Date.now(),
-        text: taskText,
-        completed: false,
-        createdAt: new Date().toISOString()
-    };
+const category = document.getElementById('categorySelect').value;
+const task = {
+    id: Date.now(),
+    text: taskText,
+    completed: false,
+    createdAt: new Date().toISOString(),
+    category: category
+};
 
     tasks.push(task);
     input.value = '';
@@ -165,4 +167,13 @@ function loadTasks() {
     if (stored) {
         tasks = JSON.parse(stored);
     }
+}
+
+function getCategoryIcon(category) {
+    const icons = {
+        'personal': '🏠',
+        'trabajo': '💼',
+        'urgente': '🔥'
+    };
+    return icons[category] || '📝';
 }
